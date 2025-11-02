@@ -1,30 +1,44 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,  } from "@/components/ui/card";
-import { Badge } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
+type PortfolioCardProps = {
+    id: string;
+    title: string;
+    description: string;
+    ImageUrl: string;
+    tags: string[];
+}
 
-
-export function PortfolioCard() {
+export function PortfolioCard({id, title, description, ImageUrl, tags}: PortfolioCardProps) {
     return (
-        <Card>
-            <div>
+        <Card className="overflow-hiddin">
+            <div className="relative h-48">
                 <Image 
-                    alt="Titulo do Portfolio"
-                    src=""
+                    alt={title}
+                    src={ImageUrl}   
+                    layout="fill"
+                    objectFit="cover"
+
                 />
             </div>
             <CardHeader>
-                <CardTitle>Titulo</CardTitle>
-                <CardDescription>Descrição</CardDescription>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
             </CardHeader>
             <CardContent>
-                <Badge>React</Badge>
-                <Badge>Next.js</Badge>
-                <Badge>Typescript</Badge>
+                <div className="flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                        <Badge key={tag}>{tag}</Badge>
+                    ))}
+                </div>
             </CardContent>
             <CardFooter>
-                <Button>Ver Detalhes</Button>
+                <Button asChild>
+                   <Link href={`/portfolio/${id}`}>Ver Detalhes</Link>
+                </Button>
             </CardFooter>
         </Card>
     )
