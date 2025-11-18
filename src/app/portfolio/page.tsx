@@ -5,7 +5,7 @@ const portfolioItems = [
         id: "abc001", 
         title: "Meu primeiro portfólio",
         description: "Criado por Carlos",
-        ImageUrl: "/vercel.svg",
+        ImageUrl: "/placeholder.svg",
         tags: ["Typescript", "React", "Next.js"],
     },
     {
